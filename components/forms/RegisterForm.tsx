@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,6 +27,8 @@ import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
 
 const RegisterForm = ({ user }: { user: User }) => {
+  // check db if user exists
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,6 +41,8 @@ const RegisterForm = ({ user }: { user: User }) => {
       phone: user.phone,
     },
   });
+
+  // If user exists, redirect to new appointment page
 
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);

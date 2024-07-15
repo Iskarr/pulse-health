@@ -1,12 +1,15 @@
 import Image from "next/image";
-
+import PasskeyModal from "@/components/PasskeyModal";
 import { PatientForm } from "@/components/forms/PatientForm";
+import Link from "next/link";
 
 const Home = ({ searchParams }: SearchParamProps) => {
-  // const isAdmin = searchParams?.admin === "true";
+  const isAdmin = searchParams?.admin === "true";
 
   return (
     <div className="flex h-screen max-h-screen">
+      {/* Show Passkey Modal */}
+      {isAdmin && <PasskeyModal />}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
           <Image
@@ -22,6 +25,9 @@ const Home = ({ searchParams }: SearchParamProps) => {
           <div className="text-14-regular mt-20 flex justify-between">
             <p className="copyright py-12">© 2024 CarePluse</p>
           </div>
+          <Link href="/?admin=true" className="text-green-500">
+            Admin
+          </Link>
         </div>
       </section>
 
