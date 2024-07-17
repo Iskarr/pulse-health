@@ -6,6 +6,9 @@ import { Doctors } from "@/constants/index";
 import { formatDateTime } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
+import * as Sentry from "@sentry/react";
+import { getUser } from "@/lib/actions/patient.actions";
+
 const Success = async ({
   params: { userId },
   searchParams,
@@ -15,6 +18,9 @@ const Success = async ({
   const doctor = Doctors.find(
     (doc) => doc.name === appointment.primaryPhysician
   );
+
+  const user = await getUser(userId);
+  Sentry.metrics.set("user_view_appointment-success", user.name);
 
   return (
     <div className="flex h-screen max-h-screen px-[5%]">
@@ -35,6 +41,7 @@ const Success = async ({
             height={300}
             width={280}
             alt="success!"
+            unoptimized
           />
           <h2 className="header mb-6 max-w-[600px] text-center">
             Your <span className="text-green-500">appointment request</span> has
@@ -70,6 +77,9 @@ const Success = async ({
           <Link href={`/patients/${userId}/new-appointment`}>
             New Appointment
           </Link>
+        </Button>
+        <Button variant="outline" className="shad-secondary-btn" asChild>
+          <Link href={`/`}>Home</Link>
         </Button>
 
         <p className="copyright">&copy; 2024 Pulse-Health </p>

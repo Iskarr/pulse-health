@@ -10,6 +10,7 @@ const Home = ({ searchParams }: SearchParamProps) => {
     <div className="flex h-screen max-h-screen">
       {/* Show Passkey Modal */}
       {isAdmin && <PasskeyModal />}
+
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
           <Image
