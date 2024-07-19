@@ -7,6 +7,12 @@ import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/columns";
 
 const Admin = async () => {
+  // Check for access token in local storage
+  // if (!localStorage.getItem("accessKey")) {
+  //   // Redirect to login page if no access token is found
+  //   window.location.href = "/";
+  // }
+
   const appointments = await getRecentAppointmentList();
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
@@ -14,8 +20,8 @@ const Admin = async () => {
         <Link href="/" className="cursor-pointer">
           <Image
             src="/assets/icons/logo-full.svg"
-            height={32}
-            width={32}
+            height={150}
+            width={150}
             alt="logo"
             className="h-8 w=fit"
           />
@@ -25,7 +31,7 @@ const Admin = async () => {
       </header>
       <main className="admin-main">
         <section className="w-full space-y-4">
-          <h1 className="header">Welcome 👋</h1>
+          <h1 className="header">Welcome Admin 👋</h1>
           <p className="text-dark-700">
             start the day with managing new appointments.
           </p>

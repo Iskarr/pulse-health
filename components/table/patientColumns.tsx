@@ -10,22 +10,22 @@ import { Appointment } from "@/types/appwrite.types";
 import { AppointmentModal } from "./AppointmentModal";
 import StatusBadge from "../StatusBadge";
 
-export const columns: ColumnDef<Appointment>[] = [
-  {
-    header: "#",
-    cell: ({ row }) => {
-      return <p className="text-14-medium ">{row.index + 1}</p>;
-    },
-  },
-  {
-    accessorKey: "patient",
-    header: "Patient",
-    cell: ({ row }) => {
-      const appointment = row.original;
-      console.log(appointment);
-      return <p className="text-14-medium ">{row.original.patient.name}</p>;
-    },
-  },
+export const patientColumns: ColumnDef<Appointment>[] = [
+  //   {
+  //     header: "#",
+  //     cell: ({ row }) => {
+  //       return <p className="text-14-medium ">{row.index + 1}</p>;
+  //     },
+  //   },
+  //   {
+  //     accessorKey: "patient",
+  //     header: "Patient",
+  //     cell: ({ row }) => {
+  //       const appointment = row.original;
+  //       console.log(appointment);
+  //       return <p className="text-14-medium ">{row.original.patient.name}</p>;
+  //     },
+  //   },
   {
     accessorKey: "status",
     header: "Status",
@@ -86,9 +86,9 @@ export const columns: ColumnDef<Appointment>[] = [
             patientId={appointment.patient.$id}
             userId={appointment.userId}
             appointment={appointment}
-            type="schedule"
-            title="Schedule Appointment"
-            description="Please confirm the following details to schedule."
+            type="notes"
+            title="Read Doctors Notes"
+            description="See the notes from your doctor."
           />
           <AppointmentModal
             patientId={appointment.patient.$id}

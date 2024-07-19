@@ -43,6 +43,9 @@ const RegisterForm = ({ user }: { user: User }) => {
   });
 
   // If user exists, redirect to new appointment page
+  // if (user.$id) {
+  //   redirect(`/patients/${user.$id}/new-appointment`);
+  // }
 
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);

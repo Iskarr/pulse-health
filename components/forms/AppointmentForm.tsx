@@ -30,7 +30,7 @@ export const AppointmentForm = ({
 }: {
   userId: string;
   patientId: string;
-  type: "create" | "cancel" | "schedule";
+  type: "create" | "cancel" | "schedule" | "notes";
   appointment?: Appointment;
   setOpen: (value: boolean) => void;
 }) => {
@@ -38,7 +38,7 @@ export const AppointmentForm = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const AppointmentFormValidation = getAppointmentSchema(type);
-  console.log(appointment);
+  // console.log(appointment);
 
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
@@ -127,6 +127,8 @@ export const AppointmentForm = ({
       break;
     case "schedule":
       buttonLabel = "Schedule appointment";
+    case "notes":
+      buttonLabel = "Close Notes";
     default:
       buttonLabel = "Get started";
       break;

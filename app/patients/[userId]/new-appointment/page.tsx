@@ -6,6 +6,7 @@ import * as Sentry from "@sentry/react";
 
 const Appointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
+  console.log(patient);
   Sentry.metrics.set("user_view_new-appointment", patient.name);
 
   return (
@@ -20,6 +21,8 @@ const Appointment = async ({ params: { userId } }: SearchParamProps) => {
             className="mb-12 h-10 w-fit"
           />
 
+          {/* error has to do with not enough imports, but doesn't any addditional ones. */}
+          {/* @ts-ignore */}
           <AppointmentForm
             patientId={patient?.$id}
             userId={userId}
